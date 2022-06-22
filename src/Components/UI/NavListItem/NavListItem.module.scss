@@ -1,0 +1,13 @@
+.NavListItem {
+	list-style-type: none;
+	a {
+		color: #ffffff;
+		font-weight: 400;
+		font-family: "Epilogue";
+		text-align: center;
+		text-decoration: none;
+		&:hover {
+			text-decoration: underline;
+		}
+	}
+}

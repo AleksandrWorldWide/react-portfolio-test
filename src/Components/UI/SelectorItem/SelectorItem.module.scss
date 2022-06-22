@@ -1,0 +1,19 @@
+.SelectorItem {
+	list-style-type: none;
+	a {
+		font-size: 16px;
+		line-height: 2;
+		color: #391400;
+		font-weight: 400;
+		font-family: "Epilogue";
+		text-decoration: none;
+		&:active {
+			color: #16cd53;
+		}
+		&:hover {
+			text-decoration: underline;
+		}
+	}
+	
+	
+}

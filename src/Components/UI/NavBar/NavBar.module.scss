@@ -1,0 +1,13 @@
+.NavBar {
+	display: flex;
+	max-width: 1580px;
+	width: 80%;
+	justify-content: space-between;
+	align-items: center;
+	margin-bottom: 74px;
+	padding: 16px 0;
+	&_mobile {
+		width: 100vw;
+		margin: 20px 0 94px 0;
+	}
+}

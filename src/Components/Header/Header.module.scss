@@ -1,0 +1,46 @@
+.Header {
+	
+	background-color: #28293e;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	
+	
+	.block {
+		color: #ffffff;
+		font-weight: 800;
+		font-family: "Epilogue";
+		.title {
+			font-size: 72px;
+			letter-spacing: -2px;
+			line-height: 1.11111;
+			margin-bottom: 50px;
+			&_mobile {
+				font-size: 56px;
+				letter-spacing: -1px;
+				margin-bottom: 35px;
+			}
+		}
+	}
+	
+	p {
+		font-size: 16px;
+		line-height: 2;
+		color: #ffffff;
+		font-weight: 400;
+		font-family: "Epilogue";
+		text-align: center;
+	}
+	.subtitle {
+		width: 34rem;
+		margin-bottom: 76px;
+		
+		&_mobile {
+			width: 20.5625rem;
+			margin-bottom: 91px;
+		}
+	}
+}
+
+

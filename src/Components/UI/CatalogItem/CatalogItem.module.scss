@@ -1,0 +1,44 @@
+.CatalogItem {
+	position: relative;
+	width: 370px;
+	height: 416px;
+	display: flex;
+
+	img {
+		position: absolute;
+		top: 0;
+		left: 0;
+		object-fit: contain;
+	}
+	
+	.body {
+		position: relative;
+		z-index: 100;
+		width: 100%;
+		display: flex;
+		justify-content: flex-end;
+		align-items: start;
+		flex-direction: column;
+		margin: 0 0 62px 50px;
+
+	}
+
+	.category {
+
+		border-radius: 19px;
+		background-color: #ffffff;
+		padding: 13px 17px 11px 17px;
+		font-size: 16px;
+		color: #391400;
+		font-weight: 400;
+		font-family: "Epilogue";
+		margin-bottom: 23px;
+	}
+
+	.title {
+		font-size: 40px;
+		color: #ffffff;
+		font-weight: 800;
+		font-family: "Epilogue";
+	}
+}
