@@ -144,7 +144,7 @@ export const Main = () => {
 	}
 
 	return (
-		<div className={css.Main}>
+		<main className={css.Main}>
 			<Media queries={{
          	mobile: "(min-width: 1040px)"
         	}}>
@@ -155,6 +155,6 @@ export const Main = () => {
 						</>
           )}}
 			</Media>
-		</div>
+		</main>
 	)
 }
