@@ -9,6 +9,7 @@ import { items as cardItems } from '../../Assets/data/data'
 import { categories as catItems} from '../../Assets/data/categories'
 import { useEffect, useState } from 'react'
 import useKeypress from 'react-use-keypress'
+import { usePrevious } from '../../Assets/Hooks/usePrevious'
 
 export const Main = () => {
 
@@ -21,6 +22,9 @@ export const Main = () => {
 	const [id, setId] = useState(0)
 	const [nameFilter, setNameFilter] = useState('Show All')
 	const [stateDropBox, setStateDropBox] = useState(false)
+
+
+	const prevOffset = usePrevious(offset)
 
 	
 // ############ select
@@ -41,9 +45,9 @@ export const Main = () => {
 
 	}
 
-	const itemsSlice = (offsetCards = offset) => {
+	const itemsSlice = (offset, prevOffset) => {
 		setCardLoading(false)
-		return cardItems.filter(item => item.id < offsetCards)
+		return cardItems.filter(item => (item.id < offset && item.id >= prevOffset))
 	}
 
 	const itemsFiltered = (cards) => {
@@ -54,8 +58,12 @@ export const Main = () => {
 
 	const onRequest = (offset) => {
 		setCardLoading(true)
+		if (cards.length === 0) {
+			setCards(itemsSlice(offset, prevOffset))
+		} else {
+			setCards(cards.concat(itemsSlice(offset, prevOffset)))
+		}
 		
-		setCards(itemsSlice(offset))
 	}
 
 	useEffect(
@@ -100,7 +108,7 @@ export const Main = () => {
 			setNameFilter(category)
 			setIdCard(null)
 	}
-console.log(nameFilter)
+
 
 	function View (match = '') {
 	
