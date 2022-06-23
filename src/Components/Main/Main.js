@@ -37,6 +37,7 @@ export const Main = () => {
 
 			setId(id)
 			setStateDropBox(!stateDropBox)
+			setIdCard(null)
 
 	}
 
@@ -96,9 +97,8 @@ export const Main = () => {
 
 	const catClick = (category) => {
 
-		return (
 			setNameFilter(category)
-		)
+			setIdCard(null)
 	}
 console.log(nameFilter)
 
