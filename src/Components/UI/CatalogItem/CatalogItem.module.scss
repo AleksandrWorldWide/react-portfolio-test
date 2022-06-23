@@ -20,6 +20,7 @@
 		align-items: start;
 		flex-direction: column;
 		margin: 0 0 62px 50px;
+		cursor: pointer;
 
 	}
 
@@ -34,9 +35,6 @@
 		font-family: "Epilogue";
 		margin-bottom: 23px;
 		text-decoration: none;
-		&:hover {
-			text-decoration: underline;
-		}
 	}
 
 	.title {
@@ -45,4 +43,9 @@
 		font-weight: 800;
 		font-family: "Epilogue";
 	}
+}
+
+.selected {
+	border: 7px solid #4fe24a;
+	border-radius: 6px;
 }

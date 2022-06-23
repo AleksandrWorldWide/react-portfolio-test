@@ -1,6 +1,5 @@
 import css from './SelectorItem.module.scss'
 import shortid from 'shortid'
-import { useState } from 'react'
 
 export const SelectorItem = ({text, onClick, isActive}) => {
 

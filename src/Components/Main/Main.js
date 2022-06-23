@@ -19,18 +19,10 @@ export const Main = () => {
 	const [offset, setOffset] = useState(9)
 	const [id, setId] = useState(0)
 	const [nameFilter, setNameFilter] = useState('Show All')
+	const [stateDropBox, setStateDropBox] = useState(false)
 
 	
-
-
-	useEffect(()=> {
-		setCategories(
-			changeCat(categories)
-
-		)
-	}, [id])
-
-
+// ############ select
 
 	const changeCat = (items) => {
 		const newItems = items.filter(item => item.category !== nameFilter)
@@ -40,18 +32,12 @@ export const Main = () => {
 		)
 	}
 
-
-	
-
 	const catFilter = (id) => {
-		return(
-			setId(id)
-		)
-	}
 
-	useEffect(()=> {
-		setNameFilter(categories[id].category)
-	}, [id])
+			setId(id)
+			setStateDropBox(!stateDropBox)
+
+	}
 
 	const itemsSlice = (offsetCards = offset) => {
 		setCardLoading(false)
@@ -69,6 +55,29 @@ export const Main = () => {
 		,[nameFilter, offset]
 	)
 
+	useEffect(()=> {
+		setNameFilter(categories[id].category)
+	}, [id])
+
+	useEffect(()=> {
+		setCategories(
+			changeCat(categories)
+
+		)
+	}, [id])
+
+// ############ catalog
+
+	const [idCard, setIdCard] = useState(0)
+
+	const cardFilter = (id) => {
+		return(
+			setIdCard(id)
+		)
+	} 
+
+
+
 
 	function View (match = '') {
 	
@@ -80,8 +89,23 @@ export const Main = () => {
 						id={id}
 						onClick={catFilter}
 					/> 
-				: <DropBox items={categories}/>}
-				<Catalog match={match} items={cards}/>
+				: <DropBox 
+						stateDropBox={stateDropBox}
+						items={categories}
+						nameFilter={nameFilter}
+						id={id}
+						onClick={catFilter}
+					/>
+				}
+				{match === '' 
+				?	<Catalog 
+						match={match} 
+						items={cards}
+						onClick={cardFilter}
+						id={idCard}
+					/>
+				:	<Catalog match={match} items={cards}/>
+				}
 				<Button text={'Load More'} type={'light'} disabled={cardLoading} onClick={() => setOffset(offset + 9)}/>
 				<Row height={184}/>
 			</div>

@@ -1,15 +1,21 @@
 import css from './CatalogItem.module.scss'
 import shortid from 'shortid'
 
-export const CatalogItem = ({category, title, subtitle}) => {
+export const CatalogItem = ({category, title, subtitle, select, onClick}) => {
+
+	const cls = [
+		css.CatalogItem,
+		css[select ? 'selected' : null]
+	]
+
 
 	return (
-		<div className={css.CatalogItem} key={shortid.generate()}>
+		<div className={cls.join(' ')} key={shortid.generate()} onClick={onClick}>
 			<img src={require(`../../../Assets/Images/${title}.png`)} alt={title} />
 			<div className={css.body}>
-				<a href='' className={css.category}>
+				<div className={css.category}>
 					{category}
-				</a>
+				</div>
 				<span className={css.title}>
 					{title+subtitle}
 				</span>

@@ -1,19 +1,19 @@
 .DropBoxItem {
 	list-style-type: none;
-	
-	a {
-		display: block;
-		text-decoration: none;
-		font-size: 16px;
+	display: block;
+	text-decoration: none;
+	font-size: 16px;
+	color: #391400;
+	font-weight: 400;
+	font-family: "Epilogue";
+	background-color: #ffffff;
+	text-align: left;
+	padding: 17px 0 15px 17px;
+	&.green {
+		color: #16cd53;
+	}
+	&.red {
 		color: #391400;
-		font-weight: 400;
-		font-family: "Epilogue";
-		background-color: #ffffff;
-		text-align: left;
-		padding: 17px 0 15px 17px;
-		&:hover{
-			text-decoration: underline;
-		}
 	}
 	
 }

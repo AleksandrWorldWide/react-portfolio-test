@@ -1,6 +1,7 @@
 import css from './Selector.module.scss'
 import { SelectorItem } from '../SelectorItem/SelectorItem'
 import { useState } from 'react'
+import shortid from 'shortid'
 
 export const Selector = ({items, onClick, id}) => {
 
