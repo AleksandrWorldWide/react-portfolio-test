@@ -2,7 +2,7 @@ import css from './Catalog.module.scss'
 import { CatalogItem } from '../CatalogItem/CatalogItem'
 
 export const Catalog = ({items, onClick, id, catClick}) => {
-
+console.log(id)
 	return (
 		<div className={css.Catalog}>
 			{

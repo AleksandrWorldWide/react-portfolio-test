@@ -52,7 +52,7 @@ export const Main = () => {
 
 	const itemsFiltered = (cards) => {
 		return (
-			cards.filter(item => nameFilter === 'Show All' ? item : item.category === nameFilter)
+			nameFilter === 'Show All' ? cards : cards.filter(item => item.category === nameFilter)
 		)
 	}
 
@@ -88,6 +88,7 @@ export const Main = () => {
 	const [idCard, setIdCard] = useState(null)
 
 	const cardFilter = (id) => {
+
 		return (
 			id === idCard ? setIdCard(null) : setIdCard(id)
 		)
@@ -106,14 +107,13 @@ export const Main = () => {
 
 	const catClick = (category) => {
 		setNameFilter(category)
-			
 	}
 	
 
 	function View (match = '') {
 	
 		return (
-			<div className={css.Main}>
+			<>
 				{match === '' 
 				? <Selector 
 						items={categories} 
@@ -139,7 +139,7 @@ export const Main = () => {
 				}
 				<Button text={'Load More'} type={'light'} disabled={cardLoading} onClick={() => setOffset(offset + 9)}/>
 				<Row height={184}/>
-			</div>
+			</>
 		)
 	}
 
