@@ -78,9 +78,10 @@ export const Main = () => {
 	useEffect(()=> {
 		setCategories(
 			changeCat(categories)
-
 		)
-	}, [id])
+	}, [id, nameFilter])
+
+
 
 // ############ catalog
 
@@ -104,11 +105,10 @@ export const Main = () => {
 	// ########### card
 
 	const catClick = (category) => {
-
-			setNameFilter(category)
-			setIdCard(null)
+		setNameFilter(category)
+			
 	}
-
+	
 
 	function View (match = '') {
 	

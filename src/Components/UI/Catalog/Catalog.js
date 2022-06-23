@@ -8,6 +8,7 @@ export const Catalog = ({items, onClick, id, catClick}) => {
 			{
 				items.map(item => {
 					const select = item.id === id ? 'selected' : null
+
 					return (
 						<CatalogItem
 							select={select}
