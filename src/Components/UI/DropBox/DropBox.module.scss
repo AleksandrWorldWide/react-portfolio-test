@@ -1,3 +1,18 @@
 .DropBox {
-	
+	position: relative;
+	min-width: 329px;
+	margin-bottom: 48px;
+	border-radius: 6px;
+	border: 1px solid #f3d1bf;
+	li:not(:last-child) {
+		border-bottom: 1px solid #f3d1bf;;
+	}
+	img {
+		position: absolute;
+		top: 21px;
+		right: 15px;
+		&.show {
+			transform: rotate(180deg);
+		}
+	}
 }

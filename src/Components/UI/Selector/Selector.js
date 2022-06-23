@@ -1,10 +1,20 @@
 import css from './Selector.module.scss'
 import { SelectorItem } from '../SelectorItem/SelectorItem'
-import { generate } from 'shortid'
+import { useState } from 'react'
 
-export const Selector = () => {
+export const Selector = ({items}) => {
 
-	const items = ['Show All','Design','Branding','Illustration','Motion']
+
+	const [state, setState] = useState(false)
+
+	const onClick = (e) => {
+		e.preventDefault()
+		setState(!state)
+		return (
+			console.log(state)
+		)
+	}
+
 	return (
 		<div className={css.Selector}>
 			{
@@ -13,7 +23,7 @@ export const Selector = () => {
 					return (
 						<SelectorItem
 							text={item}
-							key={generate.shortid}
+							onClick={onClick}
 						/>
 					)
 				})

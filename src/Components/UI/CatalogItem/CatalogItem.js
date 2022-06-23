@@ -1,16 +1,17 @@
 import css from './CatalogItem.module.scss'
+import shortid from 'shortid'
 
-export const CatalogItem = ({category, title}) => {
+export const CatalogItem = ({category, title, subtitle}) => {
 
 	return (
-		<div className={css.CatalogItem}>
+		<div className={css.CatalogItem} key={shortid.generate()}>
 			<img src={require(`../../../Assets/Images/${title}.png`)} alt={title} />
 			<div className={css.body}>
-				<span className={css.category}>
+				<a href='' className={css.category}>
 					{category}
-				</span>
+				</a>
 				<span className={css.title}>
-					{title}
+					{title+subtitle}
 				</span>
 			</div>
 		</div>
