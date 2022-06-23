@@ -8,6 +8,7 @@ import Media from 'react-media'
 import { items as cardItems } from '../../Assets/data/data'
 import { categories as catItems} from '../../Assets/data/categories'
 import { useEffect, useState } from 'react'
+import useKeypress from 'react-use-keypress'
 
 export const Main = () => {
 
@@ -41,7 +42,13 @@ export const Main = () => {
 
 	const itemsSlice = (offsetCards = offset) => {
 		setCardLoading(false)
-		return cardItems.filter(item => item.id < offsetCards).filter(item => nameFilter === 'Show All' ? item : item.category === nameFilter)
+		return cardItems.filter(item => item.id < offsetCards)
+	}
+
+	const itemsFiltered = (cards) => {
+		return (
+			cards.filter(item => nameFilter === 'Show All' ? item : item.category === nameFilter)
+		)
 	}
 
 	const onRequest = (offset) => {
@@ -52,7 +59,7 @@ export const Main = () => {
 
 	useEffect(
 		() => onRequest(offset)
-		,[nameFilter, offset]
+		,[offset]
 	)
 
 	useEffect(()=> {
@@ -68,16 +75,32 @@ export const Main = () => {
 
 // ############ catalog
 
-	const [idCard, setIdCard] = useState(0)
+	const [idCard, setIdCard] = useState(null)
 
 	const cardFilter = (id) => {
-		return(
-			setIdCard(id)
+		return (
+			id === idCard ? setIdCard(null) : setIdCard(id)
 		)
 	} 
 
+	const deleteCard = (items, id) => {
+		
+		return(
+			items.filter(item => item.id !== id)
+		)
+	}
 
+	useKeypress('Delete', () => setCards(deleteCard(cards, idCard)))
 
+	// ########### card
+
+	const catClick = (category) => {
+
+		return (
+			setNameFilter(category)
+		)
+	}
+console.log(nameFilter)
 
 	function View (match = '') {
 	
@@ -99,12 +122,12 @@ export const Main = () => {
 				}
 				{match === '' 
 				?	<Catalog 
-						match={match} 
-						items={cards}
+						items={itemsFiltered(cards)}
 						onClick={cardFilter}
+						catClick={catClick}
 						id={idCard}
 					/>
-				:	<Catalog match={match} items={cards}/>
+				:	<Catalog items={itemsFiltered(cards)}/>
 				}
 				<Button text={'Load More'} type={'light'} disabled={cardLoading} onClick={() => setOffset(offset + 9)}/>
 				<Row height={184}/>

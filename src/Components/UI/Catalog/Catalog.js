@@ -1,9 +1,8 @@
 import css from './Catalog.module.scss'
 import { CatalogItem } from '../CatalogItem/CatalogItem'
 
-export const Catalog = ({match, items, onClick, id}) => {
+export const Catalog = ({items, onClick, id, catClick}) => {
 
-	
 	return (
 		<div className={css.Catalog}>
 			{
@@ -16,6 +15,7 @@ export const Catalog = ({match, items, onClick, id}) => {
 							title={item.title}
 							subtitle={item.subtitle}
 							onClick={()=> onClick(item.id)}
+							catClick={() => catClick(item.category)}
 						/>
 					)
 					
