@@ -6,39 +6,83 @@ import { Row } from '../UI/Row/Row'
 import { DropBox } from '../UI/DropBox/DropBox'
 import Media from 'react-media'
 import { items as cardItems } from '../../Assets/data/data'
+import { categories as catItems} from '../../Assets/data/categories'
 import { useEffect, useState } from 'react'
 
 export const Main = () => {
 
+	
+
+	const [categories, setCategories] = useState(catItems)
 	const [cards, setCards] = useState([])
 	const [cardLoading, setCardLoading] = useState(false)
 	const [offset, setOffset] = useState(9)
+	const [id, setId] = useState(0)
+	const [nameFilter, setNameFilter] = useState('Show All')
+
+	
+
+
+	useEffect(()=> {
+		setCategories(
+			changeCat(categories)
+
+		)
+	}, [id])
+
+
+
+	const changeCat = (items) => {
+		const newItems = items.filter(item => item.category !== nameFilter)
+		const obj = items.filter(item => item.category === nameFilter)[0]
+		return (
+			[...newItems, {...obj, isActive: true}].sort((a,b) => a.id - b.id)
+		)
+	}
+
+
+	
+
+	const catFilter = (id) => {
+		return(
+			setId(id)
+		)
+	}
+
+	useEffect(()=> {
+		setNameFilter(categories[id].category)
+	}, [id])
 
 	const itemsSlice = (offsetCards = offset) => {
 		setCardLoading(false)
-		return cardItems.filter(item => item.id < offsetCards)
+		return cardItems.filter(item => item.id < offsetCards).filter(item => nameFilter === 'Show All' ? item : item.category === nameFilter)
 	}
 
 	const onRequest = (offset) => {
 		setCardLoading(true)
-		setOffset(offset + 9)
+		
 		setCards(itemsSlice(offset))
 	}
 
 	useEffect(
 		() => onRequest(offset)
-		,[]
+		,[nameFilter, offset]
 	)
 
 
 	function View (match = '') {
-		const items = ['Show All','Design','Branding','Illustration','Motion']
-		
+	
 		return (
 			<div className={css.Main}>
-				{match === '' ? <Selector items={items}/> : <DropBox items={items}/>}
+				{match === '' 
+				? <Selector 
+						items={categories} 
+						id={id}
+						onClick={catFilter}
+					/> 
+				: <DropBox items={categories}/>}
 				<Catalog match={match} items={cards}/>
-				<Button text={'Load More'} type={'light'} disabled={cardLoading} onClick={() => onRequest(offset)}/>
+				<Button text={'Load More'} type={'light'} disabled={cardLoading} onClick={() => setOffset(offset + 9)}/>
 				<Row height={184}/>
 			</div>
 		)

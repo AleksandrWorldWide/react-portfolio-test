@@ -1,9 +1,8 @@
 .SelectorItem {
 	list-style-type: none;
-	a {
 		font-size: 16px;
 		line-height: 2;
-		color: #391400;
+		cursor: pointer;
 		font-weight: 400;
 		font-family: "Epilogue";
 		text-decoration: none;
@@ -13,7 +12,13 @@
 		&:hover {
 			text-decoration: underline;
 		}
-	}
+		&.green {
+			color: #16cd53;
+		}
+		&.red {
+			color: #391400;
+		}
 	
 	
 }
+
